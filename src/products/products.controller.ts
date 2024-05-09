@@ -13,16 +13,16 @@ import { CreateProductDto } from 'src/Dtos/CreateProduct.dto';
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
-  @ApiBearerAuth()
+  // @ApiBearerAuth()
   @Get()
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   getProducts(@Query('page') page: number | undefined, @Query('limit') limit: number | undefined) {
     return this.productsService.getProducts(page, limit);
   }
 
-  @ApiBearerAuth()
+  // @ApiBearerAuth()
   @Get(':id')
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   getProductsById(@Param('id', ParseUUIDPipe) id: string) {
     return this.productsService.getProductsById(id);
   }
