@@ -4,7 +4,7 @@ import { AuthGuard } from 'src/guards/AuthGuards';
 import { ModifyProductDto } from 'src/Dtos/ModifyProduct.dto';
 import { RoleGuard } from 'src/guards/RoleGuard';
 import { Roles } from 'src/decorators/roles.decorator';
-import { Role } from 'src/users/role.enum';
+import { Role } from 'src/modules/users/role.enum';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreateProductDto } from 'src/Dtos/CreateProduct.dto';
 

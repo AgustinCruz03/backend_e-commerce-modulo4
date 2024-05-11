@@ -3,7 +3,7 @@ import { Product } from 'src/entities/products.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Category } from 'src/entities/categories.entity';
-import * as seed from "../utils/productsPrecargados.json"
+import * as seed from "../../utils/productsPrecargados.json"
 import { ModifyProductDto } from 'src/Dtos/ModifyProduct.dto';
 import { CreateProductDto } from 'src/Dtos/CreateProduct.dto';
 
