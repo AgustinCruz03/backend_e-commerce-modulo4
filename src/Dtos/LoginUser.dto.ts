@@ -4,7 +4,7 @@ export class LoginUserDto{
 
     /** 
     * El email debe ser un email valido
-    * @example agustin@mail.com
+    * @example romina@mail.com
     */
     @IsEmail()
     @IsNotEmpty()
@@ -12,7 +12,7 @@ export class LoginUserDto{
 
     /** 
     * La contraseña debe ser una contraseña dificil de descifrar
-    * @example aaBB@@89
+    * @example ddddddddD@2
     */
     @IsString()
     @MinLength(3)

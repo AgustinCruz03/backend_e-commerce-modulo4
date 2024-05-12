@@ -5,7 +5,6 @@ import {
   IsArray,
   ArrayMinSize,
 } from 'class-validator';
-import { Product } from 'src/entities/products.entity';
 
 export class CreateOrderDto {
   /** 
@@ -19,9 +18,9 @@ export class CreateOrderDto {
 
   /** 
  * Los productos deben ser un array de objetos que contengan únicamente el id del producto 
- * @example [{"id":"25f5152e-cd77-4299-abb2-af36fed793e0"}]
+ * @example Inserte un array que contenga objetos como el siguiente, en formato JSON, es decir la propiedad y el valor entre comillas dobles {id:37938ed8-8546-4830-8229-799da418ba7c}
  */ 
   @IsArray()
   @ArrayMinSize(1)
-  products: Partial<Product>[];
+  products: {id:string}[];
 }
