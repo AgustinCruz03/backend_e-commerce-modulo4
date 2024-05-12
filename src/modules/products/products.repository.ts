@@ -58,6 +58,8 @@ export class ProductsRepository {
 
   async seeder(){
     const response = []
+    const existe = await this.productsRepository.find()
+    if(existe.length > 0) return "Existen productos cargados"
     for(const product of seed){
       response.push(await this.productsRepository.save({...product, category: await this.categoryRepository.findOne({where:{name:product.category}})}))
     }
@@ -79,6 +81,7 @@ export class ProductsRepository {
   }
 
   async deleteProduct(id: string) {
-    return await this.productsRepository.delete(id)
+     await this.productsRepository.delete(id)
+     return id
   }
 }

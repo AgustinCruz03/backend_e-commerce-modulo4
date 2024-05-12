@@ -13,7 +13,7 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
 
-  @ApiBearerAuth()
+  @ApiBearerAuth() //Esto es de openApi, Para que lo protega el candado en la documentacion
   @Get()
   @Roles(Role.ADMIN)
   @UseGuards(AuthGuard, RoleGuard)

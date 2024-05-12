@@ -21,13 +21,13 @@ export class User{
     phone: number
 
     @Column({length:50})
-    country: string
+    country?: string
 
     @Column({type:"varchar"})
     address: string
 
     @Column({length:50})
-    city: string
+    city?: string
 
     @Column({default:false})
     isAdmin:boolean

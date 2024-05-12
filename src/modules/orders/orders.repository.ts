@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateOrderDto } from 'src/Dtos/CreateOrder.dto';
 import { OrderDetails } from 'src/entities/orderDetails.entity';
@@ -41,6 +41,9 @@ export class OrdersRepository {
         
         total += Number(productoBuscado.price);
         this.descontarStock(productoBuscado);
+        for(const pro of products){
+          if(productoBuscado.id === pro.id) throw new BadRequestException("No se puede mandar dos veces el mismo producto")
+        }
         products.push(productoBuscado);
       }
     });
