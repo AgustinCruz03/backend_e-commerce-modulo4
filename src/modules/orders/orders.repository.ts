@@ -25,7 +25,7 @@ export class OrdersRepository {
     const newOrder = new Order();
     newOrder.user = user;
     newOrder.date = new Date();
-    await this.orderRepository.save(newOrder);
+    const newOrderInDB = await this.orderRepository.save(newOrder);
 
     const products = [];
     let total = 0;
@@ -33,10 +33,13 @@ export class OrdersRepository {
     order.products.forEach((product) => {
 
       const productoBuscado = listaDeProductosEnDB.find(
-        (productEnDB) => productEnDB.id === product.id && productEnDB.stock > 0,
+        (productEnDB) => productEnDB.id === product.id
       );
 
       if (productoBuscado) {
+        if(productoBuscado.stock === 0){
+          throw new BadRequestException("El producto tiene stock insuficiente")
+        }
         productoBuscado.stock -= 1;
         
         total += Number(productoBuscado.price);
@@ -49,16 +52,16 @@ export class OrdersRepository {
     });
     
     const detalleDeCompra = new OrderDetails();
-    detalleDeCompra.order = newOrder;
+    detalleDeCompra.order = newOrderInDB;
     
     detalleDeCompra.price = total;
     detalleDeCompra.products = [...products];
-    await this.orderDetailsRepository.save(detalleDeCompra);
+    const detalleDeCompraInDb = await this.orderDetailsRepository.save(detalleDeCompra);
 
     return {
-      ordenDecompra: newOrder,
-      PrecioTotal: detalleDeCompra.price,
-      IdDetalleDeCompra: detalleDeCompra.id,
+      ordenDecompra: newOrderInDB,
+      PrecioTotal: detalleDeCompraInDb.price,
+      IdDetalleDeCompra: detalleDeCompraInDb.id,
     };
   }
 
